@@ -1,3 +1,15 @@
+:root {
+  --background-color: #000000; /* Background color for the body */
+  --form-background: #000000a6; /* Background color for the form with transparency */
+  --border-color: #ddd; /* Color for borders */
+  --button-color: #28a745; /* Color for buttons */
+  --button-hover-color: #218838; /* Color for button hover state */
+  --text-color: #ffbb00; /* Color for text */
+  --label-color: #ffffff; /* Color for labels */
+  --border-radius: 4px; /* Border radius for rounded corners */
+  --box-shadow: 0px 0px 50px rgb(223, 163, 0); /* Shadow effect for the form */
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -5,59 +17,265 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f9;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  background-color: var(--background-color);
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  padding: 0 10px;
+  animation: fadeIn 1s ease-out;
 }
 
 form {
-  background: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background: var(--form-background);
+  border: 1px solid #000000;
+  border-radius: var(--border-radius);
   max-width: 400px;
   padding: 20px;
   width: 100%;
+  margin: 0 auto;
+  opacity: 0;
+  animation: slideIn 2.5s forwards, rgbShadow 40s infinite;
+  box-shadow: var(--box-shadow);
 }
+
 form label {
   display: block;
   margin-bottom: 8px;
-  color: #555;
+  color: var(--label-color);
+  opacity: 0;
+  animation: fadeIn 0.5s 0.5s forwards;
+  transition: color 0.3s;
 }
+
 form input {
+  color: #ffbb00;
+  background: #021a25;
+  height: 40px;
   width: calc(100% - 20px);
   padding: 10px;
   margin-bottom: 15px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  font-size: 16px;
+  transition: border-color 0.3s, transform 0.3s;
 }
+
+form input:focus {
+  border-color: var(--button-color);
+  outline: none;
+  transform: scale(1.02);
+}
+
 form button {
-  background-color: #28a745;
+  background: var(--button-color);
+  max-width: 400px;
+  width: 100%;
   border: none;
-  color: #fff;
-  padding: 10px 20px;
+  color: #000000;
+  padding: 12px 24px;
   text-align: center;
-  text-decoration: none;
   display: inline-block;
   font-size: 16px;
+  font-weight: 700;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   margin: 10px 0;
-  border-radius: 4px;
+  border-radius: var(--border-radius);
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  outline: none;
 }
+
 form button:hover {
-  background-color: #218838;
+  background: var(--button-hover-color);
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+form button:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+form button:focus {
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
 }
 
 h2 {
   margin-bottom: 20px;
-  color: #333;
+  color: var(--text-color);
   text-align: center;
+  opacity: 0;
+  animation: fadeIn 1s 1s forwards;
 }
 
 #message {
   margin-top: 20px;
   text-align: center;
+  color: var(--text-color);
+  opacity: 0;
+  animation: slideUp 0.5s 1.5s forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes rgbShadow {
+  0% {
+    box-shadow: 0 0 15px rgb(255, 0, 0);
+  }
+  3.33% {
+    box-shadow: 0 0 15px rgb(255, 85, 0);
+  }
+  6.67% {
+    box-shadow: 0 0 15px rgb(255, 170, 0);
+  }
+  10% {
+    box-shadow: 0 0 15px rgb(255, 255, 0);
+  }
+  13.33% {
+    box-shadow: 0 0 15px rgb(170, 255, 0);
+  }
+  16.67% {
+    box-shadow: 0 0 15px rgb(85, 255, 0);
+  }
+  20% {
+    box-shadow: 0 0 15px rgb(0, 255, 0);
+  }
+  23.33% {
+    box-shadow: 0 0 15px rgb(0, 255, 85);
+  }
+  26.67% {
+    box-shadow: 0 0 15px rgb(0, 255, 170);
+  }
+  30% {
+    box-shadow: 0 0 15px rgb(0, 255, 255);
+  }
+  33.33% {
+    box-shadow: 0 0 15px rgb(0, 170, 255);
+  }
+  36.67% {
+    box-shadow: 0 0 15px rgb(0, 85, 255);
+  }
+  40% {
+    box-shadow: 0 0 15px rgb(0, 0, 255);
+  }
+  43.33% {
+    box-shadow: 0 0 15px rgb(85, 0, 255);
+  }
+  46.67% {
+    box-shadow: 0 0 15px rgb(170, 0, 255);
+  }
+  50% {
+    box-shadow: 0 0 15px rgb(255, 0, 255);
+  }
+  53.33% {
+    box-shadow: 0 0 15px rgb(255, 0, 170);
+  }
+  56.67% {
+    box-shadow: 0 0 15px rgb(255, 0, 85);
+  }
+  60% {
+    box-shadow: 0 0 15px rgb(255, 85, 255);
+  }
+  63.33% {
+    box-shadow: 0 0 15px rgb(255, 170, 255);
+  }
+  66.67% {
+    box-shadow: 0 0 15px rgb(255, 255, 255);
+  }
+  70% {
+    box-shadow: 0 0 15px rgb(255, 170, 170);
+  }
+  73.33% {
+    box-shadow: 0 0 15px rgb(255, 255, 170);
+  }
+  76.67% {
+    box-shadow: 0 0 15px rgb(170, 255, 170);
+  }
+  80% {
+    box-shadow: 0 0 15px rgb(170, 255, 255);
+  }
+  83.33% {
+    box-shadow: 0 0 15px rgb(170, 170, 255);
+  }
+  86.67% {
+    box-shadow: 0 0 15px rgb(255, 170, 255);
+  }
+  90% {
+    box-shadow: 0 0 15px rgb(255, 85, 255);
+  }
+  93.33% {
+    box-shadow: 0 0 15px rgb(255, 255, 255);
+  }
+  96.67% {
+    box-shadow: 0 0 15px rgb(255, 255, 85);
+  }
+  100% {
+    box-shadow: 0 0 15px rgb(255, 0, 0);
+  }
+}
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@media (max-width: 600px) {
+  form {
+    padding: 15px;
+  }
+  h2 {
+    font-size: 1.5em;
+  }
+  input, button {
+    font-size: 14px;
+  }
+}
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 16px;
+  color: #ffffff;
+  transition: color 0.3s ease;
+}
+
+.checkbox-label:hover {
+  color: #ffe600;
+}
+
+.checkbox-label input[type=checkbox] {
+  margin-right: 10px;
+  accent-color: #ffa600;
+  color: #218838;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.checkbox-label input[type=checkbox]:checked {
+  transform: scale(1.1);
 }/*# sourceMappingURL=style.css.map */

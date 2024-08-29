@@ -1,31 +1,24 @@
 document.getElementById('registrationForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent form submission
-
-    // Get input values
-    const username = document.getElementById('username').value;
-    const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     const confirmPassword = document.getElementById('confirmPassword').value;
     const messageDiv = document.getElementById('message');
 
-    // Basic validation
+    // Password validation
     if (password !== confirmPassword) {
-        messageDiv.textContent = "Passwords do not match.";
-        messageDiv.style.color = "red";
-        return;
+        event.preventDefault(); // Prevent form submission
+        messageDiv.innerText = "Passwords do not match. Please try again.";
+        messageDiv.style.color = "red"; // Error message in red
+    } else if (!validatePassword(password)) {
+        messageDiv.innerText = "Password must be at least 8 characters long and include uppercase, lowercase, numbers, and special characters.";
+        messageDiv.style.color = "red"; // Error message in red
+    } else {
+        messageDiv.innerText = "Registration successful! Welcome!";
+        messageDiv.style.color = "green"; // Success message in green
     }
-
-    // User data (for demonstration purposes)
-    const userData = {
-        username: username,
-        email: email,
-        password: password // In a real application, the password should be hashed
-    };
-
-    // Display success message
-    messageDiv.textContent = "Registration successful!";
-    messageDiv.style.color = "green";
-
-    // Here you can send the data to the server
-    console.log("User data:", userData);
 });
+
+// Password validation function
+function validatePassword(password) {
+    const strongPasswordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    return strongPasswordPattern.test(password);
+}
